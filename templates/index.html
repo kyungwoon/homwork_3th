@@ -73,9 +73,24 @@
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
-                showOrder();
+            rate()
+            showOrder();
 
-            });
+        });
+
+        function rate() {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/rate",
+                data: {},
+                success: function (response) {
+                    let exchange = response['rate'];
+                    $('#exchangeRate').text(exchange);
+
+                }
+            })
+        }
+
 
         function makeOrder() {
             let name = $('#order-name').val()
